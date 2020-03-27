@@ -65,6 +65,7 @@ CREATE TABLE `admin_system_messages` (
 
 LOCK TABLES `admin_system_messages` WRITE;
 /*!40000 ALTER TABLE `admin_system_messages` DISABLE KEYS */;
+INSERT INTO `admin_system_messages` VALUES ('e23381b486dc0eb9ae144be11ae198ed',1,'2020-03-27 18:15:29');
 /*!40000 ALTER TABLE `admin_system_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +140,7 @@ CREATE TABLE `admin_user_session` (
 
 LOCK TABLES `admin_user_session` WRITE;
 /*!40000 ALTER TABLE `admin_user_session` DISABLE KEYS */;
-INSERT INTO `admin_user_session` VALUES (1,'999edf951661455ca29deae6dac24956',1,1,'2020-03-27 15:37:07','2020-03-27 15:37:07','51.68.180.4'),(2,'94h0790gjl4p94b5nrsipq4d7g',1,2,'2020-03-27 16:13:45','2020-03-27 16:27:06','127.0.0.1'),(3,'h25l2ljo8d1sg1p1an71p10unn',1,1,'2020-03-27 16:27:06','2020-03-27 16:27:06','127.0.0.1'),(4,'r51ck1ovfoe2bvu0mtptm5n5db',1,1,'2020-03-27 16:58:56','2020-03-27 17:21:08','127.0.0.1'),(5,'k9igk8f2lkeaipujq19en1973k',1,1,'2020-03-27 17:43:29','2020-03-27 17:57:00','127.0.0.1');
+INSERT INTO `admin_user_session` VALUES (1,'999edf951661455ca29deae6dac24956',1,1,'2020-03-27 15:37:07','2020-03-27 15:37:07','51.68.180.4'),(2,'94h0790gjl4p94b5nrsipq4d7g',1,2,'2020-03-27 16:13:45','2020-03-27 16:27:06','127.0.0.1'),(3,'h25l2ljo8d1sg1p1an71p10unn',1,1,'2020-03-27 16:27:06','2020-03-27 16:27:06','127.0.0.1'),(4,'r51ck1ovfoe2bvu0mtptm5n5db',1,1,'2020-03-27 16:58:56','2020-03-27 17:21:08','127.0.0.1'),(5,'k9igk8f2lkeaipujq19en1973k',1,1,'2020-03-27 17:43:29','2020-03-27 18:14:59','127.0.0.1');
 /*!40000 ALTER TABLE `admin_user_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3662,7 +3663,7 @@ CREATE TABLE `cms_block` (
   `is_active` smallint(6) NOT NULL DEFAULT '1' COMMENT 'Is Block Active',
   PRIMARY KEY (`block_id`),
   FULLTEXT KEY `CMS_BLOCK_TITLE_IDENTIFIER_CONTENT` (`title`,`identifier`,`content`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='CMS Block Table';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='CMS Block Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3671,6 +3672,7 @@ CREATE TABLE `cms_block` (
 
 LOCK TABLES `cms_block` WRITE;
 /*!40000 ALTER TABLE `cms_block` DISABLE KEYS */;
+INSERT INTO `cms_block` VALUES (1,'footer-block','footer-block','<div style=\"width: 50%;\">\r\n<div style=\"margin-top: 5px; display: flex; align-items: flex-start;\"><img style=\"float: left; padding-right: 3px;\" src=\"{{media url=\"Logo-O-sterreichischer-Onlineshop.png\"}}\" alt=\"\"> <img style=\"float: left; padding-right: 3px;\" src=\"{{media url=\"ssl.png\"}}\" alt=\"\">\r\n<div style=\"margin-top: 5px;\">\r\n<p style=\"font-size: 10px; margin-left: 10px; width: 50%;\">Ihre Sicherheit ist uns wichtig! Alle Informationen werden durch das Secure Sockets Layer (SSL) Protokoll verschlüsselt übertragen.</p>\r\n<div style=\"font-size: 12px; margin-left: 10px; margin-top: 20px;\"><a href=\"{{config path=\"web/unsecure/base_url\"}}/lieferung\"> <span style=\"color: #222222;\">Versand / </span> </a> <a href=\"{{config path=\"web/unsecure/base_url\"}}/agb\"> <span style=\"color: #222222;\">AGB / </span> </a> <a href=\"{{config path=\"web/unsecure/base_url\"}}/impressum\"> <span style=\"color: #222222;\">Impressum / </span> </a></div>\r\n<div style=\"font-size: 12px; margin-left: 10px;\"><span style=\"color: #222222;\">Copyright 2019 Blumen Claudia / </span> <a href=\"http://www.web-direct.at\"> <span style=\"color: #222222;\">Webdesign: web-direct</span> </a></div>\r\n</div>\r\n</div>\r\n</div>\r\n<div style=\"width: 50%;\">\r\n<div style=\"margin-top: 5px; display: flex; align-items: center; justify-content: flex-end;\"><img style=\"width: 250px;\" src=\"{{media url=\"payment_methods.png\"}}\" alt=\"\"></div>\r\n</div>\r\n<div>&nbsp;</div>','2020-03-27 18:10:48','2020-03-27 18:10:48',1),(2,'footer-block','footer-block','<div style=\"width: 50%;\">\r\n<div style=\"margin-top: 5px; display: flex; align-items: flex-start;\"><img style=\"float: left; padding-right: 3px;\" src=\"{{media url=\"Logo-O-sterreichischer-Onlineshop.png\"}}\" alt=\"\"> <img style=\"float: left; padding-right: 3px;\" src=\"{{media url=\"ssl.png\"}}\" alt=\"\">\r\n<div style=\"margin-top: 5px;\">\r\n<p style=\"font-size: 10px; margin-left: 10px; width: 50%;\">Your safety is important to us! All information is encrypted by the Secure Sockets Layer (SSL) protocol.</p>\r\n<div style=\"font-size: 12px; margin-left: 10px; margin-top: 20px;\"><a href=\"{{config path=\"web/unsecure/base_url\"}}/lieferung\"> <span style=\"color: #222222;\">Delivery / </span> </a> <a href=\"{{config path=\"web/unsecure/base_url\"}}/agb\"> <span style=\"color: #222222;\">AGB / </span> </a> <a href=\"{{config path=\"web/unsecure/base_url\"}}/impressum\"> <span style=\"color: #222222;\">Impressum / </span> </a></div>\r\n<div style=\"font-size: 12px; margin-left: 10px;\"><span style=\"color: #222222;\">Copyright 2019 Blumen Claudia / </span> <a href=\"http://www.web-direct.at\"> <span style=\"color: #222222;\">Webdesign: web-direct</span> </a></div>\r\n</div>\r\n</div>\r\n</div>\r\n<div style=\"width: 50%;\">\r\n<div style=\"margin-top: 5px; display: flex; align-items: center; justify-content: flex-end;\"><img style=\"width: 250px;\" src=\"{{media url=\"payment_methods.png\"}}\" alt=\"\"></div>\r\n</div>\r\n<div>&nbsp;</div>','2020-03-27 18:10:48','2020-03-27 18:14:17',1);
 /*!40000 ALTER TABLE `cms_block` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3697,6 +3699,7 @@ CREATE TABLE `cms_block_store` (
 
 LOCK TABLES `cms_block_store` WRITE;
 /*!40000 ALTER TABLE `cms_block_store` DISABLE KEYS */;
+INSERT INTO `cms_block_store` VALUES (1,1),(2,2);
 /*!40000 ALTER TABLE `cms_block_store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6603,7 +6606,7 @@ CREATE TABLE `layout_link` (
   CONSTRAINT `LAYOUT_LINK_LAYOUT_UPDATE_ID_LAYOUT_UPDATE_LAYOUT_UPDATE_ID` FOREIGN KEY (`layout_update_id`) REFERENCES `layout_update` (`layout_update_id`) ON DELETE CASCADE,
   CONSTRAINT `LAYOUT_LINK_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `LAYOUT_LINK_THEME_ID_THEME_THEME_ID` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`theme_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Layout Link';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Layout Link';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6612,6 +6615,7 @@ CREATE TABLE `layout_link` (
 
 LOCK TABLES `layout_link` WRITE;
 /*!40000 ALTER TABLE `layout_link` DISABLE KEYS */;
+INSERT INTO `layout_link` VALUES (1,1,4,1,0),(2,2,4,2,0);
 /*!40000 ALTER TABLE `layout_link` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6630,7 +6634,7 @@ CREATE TABLE `layout_update` (
   `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update Timestamp',
   PRIMARY KEY (`layout_update_id`),
   KEY `LAYOUT_UPDATE_HANDLE` (`handle`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Layout Updates';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Layout Updates';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6639,6 +6643,7 @@ CREATE TABLE `layout_update` (
 
 LOCK TABLES `layout_update` WRITE;
 /*!40000 ALTER TABLE `layout_update` DISABLE KEYS */;
+INSERT INTO `layout_update` VALUES (1,'default','<body><referenceContainer name=\"footer\"><block class=\"Magento\\Cms\\Block\\Widget\\Block\" name=\"0MipZlUw6pTyJpTEuL1cx9Jry9Ku1OO5\" template=\"widget/static_block/default.phtml\"><action method=\"setData\"><argument name=\"name\" xsi:type=\"string\">block_id</argument><argument name=\"value\" xsi:type=\"string\">1</argument></action></block></referenceContainer></body>',0,'0000-00-00 00:00:00'),(2,'default','<body><referenceContainer name=\"footer\"><block class=\"Magento\\Cms\\Block\\Widget\\Block\" name=\"CZcVEflX7ZZxNvcECeoMLoRIJ32e5BjJ\" template=\"widget/static_block/default.phtml\"><action method=\"setData\"><argument name=\"name\" xsi:type=\"string\">block_id</argument><argument name=\"value\" xsi:type=\"string\">2</argument></action></block></referenceContainer></body>',0,'0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `layout_update` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -12138,7 +12143,7 @@ CREATE TABLE `ui_bookmark` (
   PRIMARY KEY (`bookmark_id`),
   KEY `UI_BOOKMARK_USER_ID_NAMESPACE_IDENTIFIER` (`user_id`,`namespace`,`identifier`),
   CONSTRAINT `UI_BOOKMARK_USER_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`user_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Bookmark';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Bookmark';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -12147,7 +12152,7 @@ CREATE TABLE `ui_bookmark` (
 
 LOCK TABLES `ui_bookmark` WRITE;
 /*!40000 ALTER TABLE `ui_bookmark` DISABLE KEYS */;
-INSERT INTO `ui_bookmark` VALUES (1,1,'design_theme_listing','default',1,'Default View','{\"views\":{\"default\":{\"label\":\"Default View\",\"index\":\"default\",\"editable\":false,\"data\":{\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"theme_id\":{\"visible\":false,\"sorting\":\"asc\"},\"theme_title\":{\"visible\":true,\"sorting\":false},\"parent_theme_title\":{\"visible\":true,\"sorting\":false},\"theme_path\":{\"visible\":true,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false}},\"displayMode\":\"grid\",\"positions\":{\"theme_id\":0,\"theme_title\":1,\"parent_theme_title\":2,\"theme_path\":3,\"actions\":4},\"paging\":{\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}},\"value\":\"Default View\"}}}','0000-00-00 00:00:00','0000-00-00 00:00:00'),(2,1,'design_theme_listing','current',0,NULL,'{\"current\":{\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"theme_id\":{\"visible\":false,\"sorting\":\"asc\"},\"theme_title\":{\"visible\":true,\"sorting\":false},\"parent_theme_title\":{\"visible\":true,\"sorting\":false},\"theme_path\":{\"visible\":true,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false}},\"displayMode\":\"grid\",\"positions\":{\"theme_id\":0,\"theme_title\":1,\"parent_theme_title\":2,\"theme_path\":3,\"actions\":4},\"paging\":{\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}}}','0000-00-00 00:00:00','0000-00-00 00:00:00'),(3,1,'design_config_listing','default',1,'Default View','{\"views\":{\"default\":{\"label\":\"Default View\",\"index\":\"default\",\"editable\":false,\"data\":{\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"default\":{\"visible\":true,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"store_website_id\":{\"visible\":true,\"sorting\":false},\"store_group_id\":{\"visible\":true,\"sorting\":false},\"store_id\":{\"visible\":true,\"sorting\":false},\"theme_theme_id\":{\"visible\":true,\"sorting\":false}},\"displayMode\":\"grid\",\"paging\":{\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20},\"positions\":{\"default\":0,\"store_website_id\":1,\"store_group_id\":2,\"store_id\":3,\"actions\":4,\"theme_theme_id\":5}},\"value\":\"Default View\"}}}','0000-00-00 00:00:00','0000-00-00 00:00:00'),(4,1,'design_config_listing','current',0,NULL,'{\"current\":{\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"default\":{\"visible\":true,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"store_website_id\":{\"visible\":true,\"sorting\":false},\"store_group_id\":{\"visible\":true,\"sorting\":false},\"store_id\":{\"visible\":true,\"sorting\":false},\"theme_theme_id\":{\"visible\":true,\"sorting\":false}},\"displayMode\":\"grid\",\"paging\":{\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20},\"positions\":{\"default\":0,\"store_website_id\":1,\"store_group_id\":2,\"store_id\":3,\"actions\":4,\"theme_theme_id\":5}}}','0000-00-00 00:00:00','0000-00-00 00:00:00');
+INSERT INTO `ui_bookmark` VALUES (1,1,'design_theme_listing','default',1,'Default View','{\"views\":{\"default\":{\"label\":\"Default View\",\"index\":\"default\",\"editable\":false,\"data\":{\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"theme_id\":{\"visible\":false,\"sorting\":\"asc\"},\"theme_title\":{\"visible\":true,\"sorting\":false},\"parent_theme_title\":{\"visible\":true,\"sorting\":false},\"theme_path\":{\"visible\":true,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false}},\"displayMode\":\"grid\",\"positions\":{\"theme_id\":0,\"theme_title\":1,\"parent_theme_title\":2,\"theme_path\":3,\"actions\":4},\"paging\":{\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}},\"value\":\"Default View\"}}}','0000-00-00 00:00:00','0000-00-00 00:00:00'),(2,1,'design_theme_listing','current',0,NULL,'{\"current\":{\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"theme_id\":{\"visible\":false,\"sorting\":\"asc\"},\"theme_title\":{\"visible\":true,\"sorting\":false},\"parent_theme_title\":{\"visible\":true,\"sorting\":false},\"theme_path\":{\"visible\":true,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false}},\"displayMode\":\"grid\",\"positions\":{\"theme_id\":0,\"theme_title\":1,\"parent_theme_title\":2,\"theme_path\":3,\"actions\":4},\"paging\":{\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}}}','0000-00-00 00:00:00','0000-00-00 00:00:00'),(3,1,'design_config_listing','default',1,'Default View','{\"views\":{\"default\":{\"label\":\"Default View\",\"index\":\"default\",\"editable\":false,\"data\":{\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"default\":{\"visible\":true,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"store_website_id\":{\"visible\":true,\"sorting\":false},\"store_group_id\":{\"visible\":true,\"sorting\":false},\"store_id\":{\"visible\":true,\"sorting\":false},\"theme_theme_id\":{\"visible\":true,\"sorting\":false}},\"displayMode\":\"grid\",\"paging\":{\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20},\"positions\":{\"default\":0,\"store_website_id\":1,\"store_group_id\":2,\"store_id\":3,\"actions\":4,\"theme_theme_id\":5}},\"value\":\"Default View\"}}}','0000-00-00 00:00:00','0000-00-00 00:00:00'),(4,1,'design_config_listing','current',0,NULL,'{\"current\":{\"filters\":{\"applied\":{\"placeholder\":true}},\"columns\":{\"default\":{\"visible\":true,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"store_website_id\":{\"visible\":true,\"sorting\":false},\"store_group_id\":{\"visible\":true,\"sorting\":false},\"store_id\":{\"visible\":true,\"sorting\":false},\"theme_theme_id\":{\"visible\":true,\"sorting\":false}},\"displayMode\":\"grid\",\"paging\":{\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20},\"positions\":{\"default\":0,\"store_website_id\":1,\"store_group_id\":2,\"store_id\":3,\"actions\":4,\"theme_theme_id\":5}}}','0000-00-00 00:00:00','0000-00-00 00:00:00'),(5,1,'cms_block_listing','default',1,'Default View','{\"views\":{\"default\":{\"label\":\"Default View\",\"index\":\"default\",\"editable\":false,\"data\":{\"search\":{\"value\":\"\"},\"columns\":{\"block_id\":{\"visible\":true,\"sorting\":\"asc\"},\"title\":{\"visible\":true,\"sorting\":false},\"identifier\":{\"visible\":true,\"sorting\":false},\"store_id\":{\"visible\":true,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"is_active\":{\"visible\":true,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"creation_time\":{\"visible\":true,\"sorting\":false},\"update_time\":{\"visible\":true,\"sorting\":false}},\"filters\":{\"applied\":{\"placeholder\":true}},\"displayMode\":\"grid\",\"positions\":{\"ids\":0,\"block_id\":1,\"title\":2,\"identifier\":3,\"store_id\":4,\"is_active\":5,\"creation_time\":6,\"update_time\":7,\"actions\":8},\"paging\":{\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}},\"value\":\"Default View\"}}}','0000-00-00 00:00:00','0000-00-00 00:00:00'),(6,1,'cms_block_listing','current',0,NULL,'{\"current\":{\"search\":{\"value\":\"\"},\"columns\":{\"block_id\":{\"visible\":true,\"sorting\":\"asc\"},\"title\":{\"visible\":true,\"sorting\":false},\"identifier\":{\"visible\":true,\"sorting\":false},\"store_id\":{\"visible\":true,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"is_active\":{\"visible\":true,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"creation_time\":{\"visible\":true,\"sorting\":false},\"update_time\":{\"visible\":true,\"sorting\":false}},\"filters\":{\"applied\":{\"placeholder\":true}},\"displayMode\":\"grid\",\"positions\":{\"ids\":0,\"block_id\":1,\"title\":2,\"identifier\":3,\"store_id\":4,\"is_active\":5,\"creation_time\":6,\"update_time\":7,\"actions\":8},\"paging\":{\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20}}}','0000-00-00 00:00:00','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `ui_bookmark` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -12627,7 +12632,7 @@ CREATE TABLE `widget_instance` (
   PRIMARY KEY (`instance_id`),
   KEY `WIDGET_INSTANCE_THEME_ID_THEME_THEME_ID` (`theme_id`),
   CONSTRAINT `WIDGET_INSTANCE_THEME_ID_THEME_THEME_ID` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`theme_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Instances of Widget for Package Theme';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Instances of Widget for Package Theme';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -12636,6 +12641,7 @@ CREATE TABLE `widget_instance` (
 
 LOCK TABLES `widget_instance` WRITE;
 /*!40000 ALTER TABLE `widget_instance` DISABLE KEYS */;
+INSERT INTO `widget_instance` VALUES (1,'Magento\\Cms\\Block\\Widget\\Block',4,'footer-widget','1','{\"block_id\":\"1\"}',0),(2,'Magento\\Cms\\Block\\Widget\\Block',4,'footer-widget','2','{\"block_id\":\"2\"}',0);
 /*!40000 ALTER TABLE `widget_instance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -12658,7 +12664,7 @@ CREATE TABLE `widget_instance_page` (
   PRIMARY KEY (`page_id`),
   KEY `WIDGET_INSTANCE_PAGE_INSTANCE_ID` (`instance_id`),
   CONSTRAINT `WIDGET_INSTANCE_PAGE_INSTANCE_ID_WIDGET_INSTANCE_INSTANCE_ID` FOREIGN KEY (`instance_id`) REFERENCES `widget_instance` (`instance_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Instance of Widget on Page';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Instance of Widget on Page';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -12667,6 +12673,7 @@ CREATE TABLE `widget_instance_page` (
 
 LOCK TABLES `widget_instance_page` WRITE;
 /*!40000 ALTER TABLE `widget_instance_page` DISABLE KEYS */;
+INSERT INTO `widget_instance_page` VALUES (1,1,'all_pages','default','footer','all','','widget/static_block/default.phtml'),(2,2,'all_pages','default','footer','all','','widget/static_block/default.phtml');
 /*!40000 ALTER TABLE `widget_instance_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -12693,6 +12700,7 @@ CREATE TABLE `widget_instance_page_layout` (
 
 LOCK TABLES `widget_instance_page_layout` WRITE;
 /*!40000 ALTER TABLE `widget_instance_page_layout` DISABLE KEYS */;
+INSERT INTO `widget_instance_page_layout` VALUES (1,1),(2,2);
 /*!40000 ALTER TABLE `widget_instance_page_layout` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -12815,4 +12823,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-27 13:58:48
+-- Dump completed on 2020-03-27 14:17:27
