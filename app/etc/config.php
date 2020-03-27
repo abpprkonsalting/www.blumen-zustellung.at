@@ -204,6 +204,7 @@ return [
         'Dotdigitalgroup_Email' => 1,
         'Magento_WishlistAnalytics' => 1,
         'Magento_WishlistGraphQl' => 1,
+        'Mageplaza_Core' => 1,
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1,
     ],
