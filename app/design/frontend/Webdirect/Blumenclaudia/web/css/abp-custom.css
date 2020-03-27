@@ -23,6 +23,11 @@ body {
     margin: 0 -20px;
 }
 
+.page-title-wrapper {
+    margin-top: 40px;
+    text-transform: uppercase;
+}
+
 /*************************************************************************/
 /******************* Header **********************************************/
 .page-wrapper .page-header .header.content {
@@ -50,8 +55,38 @@ body {
     display: none;
 }
 
-.page-header .dropdown-block.language-block, .page-header .minicart-wrapper {
+.page-header .minicart-wrapper {
     margin-left: 15px;
+}
+.page-header .minicart-wrapper .action.showcart {
+    position: relative;
+}
+
+.page-header .minicart-wrapper .action.showcart .text {
+    display:none;
+}
+
+.page-header .minicart-wrapper .action.showcart .counter.qty:not(.empty) {
+    position: absolute;
+    right: -10px;
+    top: -5px;
+    height: 16px;
+    line-height: 14px;
+    width: 16px;
+    border-radius: 45px;
+    display: block;
+    min-width: 0;
+    margin: 0;
+    padding: 2px;
+}
+
+.page-header .minicart-wrapper .action.showcart .counter.qty .counter-number {
+    font-size: 10px;
+}
+
+.page-header .dropdown-block.language-block{
+    margin-left: 20px;
+    margin-bottom: 4px;
 }
 
 .page-header .dropdown-block.language-block .lang-switcher {
@@ -269,4 +304,11 @@ body.catalog-category-view ol.product-items .product-item {
     margin-left: 0 !important;
     margin-right: 3%;
     margin-bottom: 60px;
+}
+
+/*************************************************************************/
+/******************* Catalog Category ************************************/
+
+body.checkout-index-index #maincontent {
+    padding: 80px 40px;
 }
