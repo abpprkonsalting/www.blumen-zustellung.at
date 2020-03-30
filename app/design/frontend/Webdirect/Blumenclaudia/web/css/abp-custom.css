@@ -11,6 +11,10 @@ body {
     padding: 0 20px;
 }
 
+#maincontent {
+    padding: 60px;
+}
+
 .page-wrapper .page-header .header.content, .page-wrapper #maincontent {
     background: #fff;
 }
@@ -180,7 +184,7 @@ border-top: 3px solid #f8d690;
 }
 
 /*************************************************************************/
-/******************* Menu ************************************************/
+/******************* Footer **********************************************/
 
 .footer.content {display:flex;}
 
@@ -194,6 +198,10 @@ border-top: 3px solid #f8d690;
 
 /*************************************************************************/
 /******************* Home ************************************************/
+
+body.cms-home #maincontent {
+    padding-top: 0;
+}
 
 @media (min-width: 680px){
     .home-flower-container {
@@ -287,9 +295,6 @@ body.cms-home .block-new-products .pager .item.pages-item-previous .action {
 /*************************************************************************/
 /******************* Uber-uns & kontakt **********************************/
 
-body.cms-uber-uns #maincontent, body.cms-kontakt #maincontent{
-    padding: 0 100px;
-}
 
 /*************************************************************************/
 /******************* Catalog Category ************************************/
@@ -307,7 +312,7 @@ body.catalog-category-view ol.product-items .product-item {
 }
 
 /*************************************************************************/
-/******************* Catalog Category ************************************/
+/******************* Checkout Page ***************************************/
 
 body.checkout-index-index #maincontent {
     padding: 80px 40px;
