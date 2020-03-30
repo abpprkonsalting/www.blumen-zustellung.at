@@ -1,0 +1,105 @@
+<?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+<?php $_product = $block->getProduct(); ?>
+<div class="product-add-form">
+    <form data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"
+          action="<?= /* @NoEscape */ $block->getSubmitUrl($_product) ?>" method="post"
+          id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_product->getId() ?>" />
+        <?= $block->getBlockHtml('formkey') ?>
+        <div class="box-tocart">
+            <div class="fieldset">
+                <input name="Giftcard Price" id="giftcard_price_val" value="" title="giftcard_price" class="input-number" type="hidden">
+                <label class="label" for="Receiver Name"><span>Receiver Name (Optional)</span></label>
+                <div class="control">
+                    <input data-validate="{'required-entry':true}" name="Receiver Name" id="receiver_name" value="" title="receiver_name" class="input-text" type="text">
+                </div>
+                <div class="email-error"></div>
+                <label class="label" for="Receiver Email"><span>Receiver Email (Required)</span></label>
+                <div class="control">
+                    <input name="Receiver Email" id="receiver_email" value="" title="receiver_email" class="input-text" type="text">
+                </div>
+                <label class="label" for="Message"><span>Message (Optional)</span></label>
+                <div class="control">
+                    <textarea name="Message" id="message" title="message" class="input-text"></textarea>
+                </div>
+                <div class="field qty">
+                    <div class="control">
+                        <input name="qty" id="qty" value="1" title="Qty" class="input-text qty" type="hidden">
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="button" title="Add to Cart" class="action primary tocart" id="product-addtocart-giftcard-button">
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!--
+<script type="text/x-magento-init">
+    {
+        "#exampleScope": {
+            "Magento_Ui/js/core/app" : {
+                "components" : {
+                    "exampleScope" : {
+                        "component" : "Pravams_Giftcard/js/giftcard_view"
+                    }
+                }
+            }
+        }
+    }
+</script>
+-->
+
+<script type="text/javascript">
+var minPrice = <?php echo $block->getMinimumPrice();?>;
+var maxPrice = <?php echo $block->getMaximumPrice();?>;
+
+
+function validateEmail($email) {
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return emailReg.test( $email );
+}
+
+
+requirejs(['jquery'], function(jQuery) {
+    jQuery(function () {
+        jQuery('#product-addtocart-giftcard-button').click(function () {
+            var errorFlag=false;
+            var price = jQuery('#giftcard_price').val();
+            var symbol = jQuery('#currency-symbol').html();
+            var email = jQuery('#receiver_email').val();
+            if(price >= minPrice && price <= maxPrice){
+                jQuery('#giftcard_price_val').val(price);
+                jQuery('.price-error').css('display','none');
+            }else{
+                errorFlag=true;
+                var errorMessage = 'Please enter a price between ';
+                errorMessage = errorMessage+symbol+minPrice+' and '+symbol+maxPrice;
+                jQuery('.price-error').html(errorMessage);
+                jQuery('.price-error').css('color','red');
+                jQuery('.price-error').css('font-size','12px');
+                jQuery('.price-error').css('width','600px');
+                exit;
+            }
+
+            if(validateEmail(email) && email.length > 6){
+                jQuery('.email-error').css('display','none');
+            }else{
+                errorFlag=true;
+                var errorMessage = 'Please enter a valid email';
+                jQuery('.email-error').html(errorMessage);
+                jQuery('.email-error').css('color','red');
+                jQuery('.email-error').css('font-size','12px');
+                jQuery('.email-error').css('width','400px');
+                exit;
+            }
+
+            if(errorFlag==false){
+                jQuery('#product_addtocart_form').submit();
+            }
+        });
+    });
+});
+</script>
