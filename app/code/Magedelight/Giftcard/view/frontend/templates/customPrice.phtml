@@ -1,0 +1,68 @@
+<?php
+/* Magedelight
+ * Copyright (C) 2016 Magedelight <info@magedelight.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @category Magedelight
+ * @package Magedelight_Giftcard
+ * @copyright Copyright (c) 2016 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php
+$product = $block->getProduct();
+$customHelper = $this->helper('Magedelight\Giftcard\Helper\Data');
+$giftcardIsEnabled = $customHelper->getConfig('magedelight/general/enable_giftcard');
+if ($giftcardIsEnabled == 1) {
+    if ($product->getGiftcardPriceType() == '2') {
+        $minPrice = $block->getMinPrice();
+        $maxPrice = $block->getMaxPrice();
+        ?>
+        <div class="price-box">
+            <p class="min-price">
+                <span class="price-label">From</span>
+                <span class="price-container price-final_price">
+                    <span class="price-wrapper " data-price-type="finalPrice" data-price-amount="<?php echo $product->getGiftcardPriceMin(); ?>" id="product-from-price-<?php echo $product->getEntityId(); ?>">
+                        <span class="price"><?php echo $minPrice; ?></span>
+                    </span>
+                </span>
+            </p>
+            <p class="max-price">
+                <span class="price-label">To</span>
+                <span class="price-container price-final_price">
+                    <span class="price-wrapper " data-price-type="finalPrice" data-price-amount="<?php echo $product->getGiftcardPriceMax(); ?>" id="product-to-price-<?php echo $product->getEntityId(); ?>">
+                        <span class="price"><?php echo $maxPrice; ?></span>
+                    </span>
+                </span>
+            </p>
+        </div>
+        <?php
+    } else {
+        $price = $block->getGiftcardBalance();
+        ?>
+        <div class="price-box price-final_price" data-role="priceBox">
+            <span class="price-container price-final_price">
+                <span id="product-price-<?php echo $product->getEntityId(); ?>" class="price-wrapper " data-price-type="finalPrice" data-price-amount="<?php echo $product->getGiftcardBalance(); ?>">
+                    <span class="price"><?php echo $price; ?></span>
+                </span>
+            </span>
+        </div>
+        <?php
+    }
+}
+?>

@@ -1,0 +1,8 @@
+-> when creating order from admin, giftcard products were not showing
+-> m2.3 not showing selected template at frontend
+-> selected template showing html code in admin panel
+
+changed files
+etc/di.xml
+etc/sales.xml
+Plugin/*

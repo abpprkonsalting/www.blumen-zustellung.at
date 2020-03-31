@@ -1,0 +1,67 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- ko if: isDisplayed() -->
+<div class="payment-option _collapsible opc-payment-additional giftcard-code"
+     data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+    <div class="payment-option-title field choice" data-role="title">
+        <span class="action action-toggle" id="block-discount-heading" role="heading" aria-level="2">
+            <!-- ko i18n: 'Apply Giftcard Code'--><!-- /ko -->
+        </span>
+    </div>
+    <div class="payment-option-content" data-role="content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <form class="form form-discount" id="md-giftcard-form">
+            <div class="payment-option-inner">
+                <div class="field">
+                    <label class="label" for="discount-code">
+                        <span data-bind="i18n: 'Enter discount code'"></span>
+                    </label>
+                    <div class="control">
+                        <input class="input-text"
+                               type="text"
+                               id="md-giftcard-code"
+                               name="md_giftcard_code"
+                               data-validate="{'required-entry':true}"
+                               data-bind="value: mdGiftcardCode, attr:{placeholder: $t('Enter giftcard code')} " />
+                    </div>
+                </div>
+
+                <!-- ko if: appliedGiftCards().length > 0 -->
+                <div class="gc-applied-gift-cards">
+                    <div class="applied-gift-card-heading" data-bind="text: $t('Applied Gift Cards')"></div>
+                    <ul data-bind="foreach: appliedGiftCards">
+                        <li>
+                            <label>
+                                <input name="giftcard_remove[]" class="checkbox" type="checkbox" data-bind="value: code" />
+                                <span data-bind="text: code"></span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /ko -->
+            </div>
+
+            <div class="actions-toolbar">
+                <div class="primary">
+                    
+                    <button class="action action-apply" type="submit" data-bind="'value': $t('Apply Discount'), click: apply">
+                        <span><!-- ko i18n: 'Apply Giftcard'--><!-- /ko --></span>
+                    </button>
+
+                    <!-- ko if: appliedGiftCards().length > 0 -->
+                        <button class="action action-cancel" type="submit" data-bind="'value': $t('Cancel'), click: cancel">
+                            <span><!-- ko i18n: 'Remove Giftcard'--><!-- /ko --></span>
+                        </button>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /ko -->
