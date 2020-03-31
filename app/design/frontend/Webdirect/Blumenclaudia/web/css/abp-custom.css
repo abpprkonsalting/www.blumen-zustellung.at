@@ -317,3 +317,15 @@ body.catalog-category-view ol.product-items .product-item {
 body.checkout-index-index #maincontent {
     padding: 80px 40px;
 }
+
+body.checkout-index-index #custom-checkout-form {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+body.checkout-index-index #custom-checkout-form .admin__control-checkbox {
+margin-top: 0;
+    top: 0;
+    margin-right: 20px;
+}
