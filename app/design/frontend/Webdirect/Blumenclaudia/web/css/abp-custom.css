@@ -32,6 +32,25 @@ body {
     text-transform: uppercase;
 }
 
+.action.primary, #top-cart-btn-checkout, .action.action-apply {
+    margin: 0 auto;
+    padding: 10px 15px  !important;
+    background: #F79239 !important;
+    border: 1px solid #F79239 !important;
+    border-radius: 20px !important;
+    color: white !important;
+    font-size: 14px;
+    box-shadow: none;
+}
+
+.bundle-options-container .block-bundle-summary .product-addto-links > .action:hover, .product-item-actions .actions-secondary > .action:hover, 
+.product-social-links .action.tocompare:hover, .wishlist.split.button > .action.split:hover, .product-social-links .action.mailto.friend:hover, 
+.product-social-links .action.towishlist:hover, .block-bundle-summary .action.towishlist:hover, .product-item .action.towishlist:hover, 
+.table-comparison .action.towishlist:hover {
+    color: #F79239 !important;
+    
+}
+
 /*************************************************************************/
 /******************* Header **********************************************/
 .page-wrapper .page-header .header.content {
@@ -260,17 +279,6 @@ body.cms-home .admin__data-grid-outer-wrap .product-items .product-item-details,
 
 body.cms-home .block-new-products .product-items .product-item-details .price-details {
     margin-bottom: 20px;
-}
-
-body.cms-home .admin__data-grid-outer-wrap .product-items .product-item-details .action.tocart.primary, body.cms-home .block-new-products .product-items .product-item-details .action.tocart.primary {
-margin: 0 auto;
-    padding: 10px 15px;
-    background: #F79239;
-    border: 1px solid #F79239;
-    border-radius: 20px;
-    color: white;
-    font-size: 14px;
-
 }
 
 body.cms-home .block-new-products .pager {
