@@ -25,6 +25,7 @@ body {
 
 .page-wrapper .page-footer, .page-wrapper .copyright {
     margin: 0 -20px;
+    background: #f4f4f4;
 }
 
 .page-title-wrapper {
@@ -170,9 +171,7 @@ border-top: 3px solid #f8d690;
 .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) {
     background-color: #007255 !important;
     border-bottom: 3px solid #000;
-    padding-left: 30%;
-    display: flex;
-    align-items: center;
+    
 }
 
 .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) .level0.ui-menu-item > a{
@@ -202,6 +201,40 @@ border-top: 3px solid #f8d690;
     background-color: rgba(0, 114, 85, 0.5);
 }
 
+@media only screen and (max-width: 767px) {
+
+    .page-wrapper .sections.nav-sections .section-item-title.nav-sections-item-title {
+        display:none;
+    }
+
+    .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) .level0.ui-menu-item > a{
+        padding: 10px 20px;
+    }
+
+    .page-wrapper .navigation a, .page-wrapper .navigation a > span {
+        color: white;
+    }
+
+    .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) .level0.ui-menu-item > ul{
+        padding-left: 20px;
+    }
+
+    .navigation .level0.active>a:not(.ui-state-active), .navigation .level0.has-active>a:not(.ui-state-active), .navigation .submenu:not(:first-child) .active>a {
+        border-color: #ffcc33;
+    }
+    
+}
+
+@media only screen and (min-width: 767px) {
+    
+    .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) {
+        padding-left: 40%;
+        display: flex;
+        align-items: center;
+    }
+}
+
+
 /*************************************************************************/
 /******************* Footer **********************************************/
 
@@ -214,6 +247,31 @@ border-top: 3px solid #f8d690;
     display: flex;
     padding: 60px 20px;
 }
+
+@media only screen and (min-width: 768px) {
+    .footer .widget.block.block-static-block > div {
+      width: 50% !important;
+    
+    }
+}
+    
+@media only screen and (max-width: 767px) {
+    
+    .footer .widget.block.block-static-block {
+       flex-direction: column-reverse !important;
+    }
+    .footer .widget.block.block-static-block div:nth-child(2) >div {
+    justify-content: center !important;;
+    
+    }
+    
+    .footer .widget.block.block-static-block > div:first-child > div {
+      padding-top: 50px !important;
+    
+    }
+    
+}
+    
 
 /*************************************************************************/
 /******************* Home ************************************************/
@@ -266,11 +324,6 @@ body.cms-home .admin__data-grid-outer-wrap .block-title, body.cms-home .block-ne
     display:none;
 }
 
-body.cms-home .admin__data-grid-outer-wrap .product-items, body.cms-home .block-new-products .product-items {
-    display: flex;
-    justify-content: space-evenly;
-}
-
 body.cms-home .admin__data-grid-outer-wrap .product-items .product-item-details, body.cms-home .block-new-products .product-items .product-item-details {
     display: flex;
     flex-direction: column;
@@ -300,6 +353,34 @@ body.cms-home .block-new-products .pager .item.pages-item-previous .action {
     margin: 0;
 }
 
+.cms-home .products-grid.grid .product-item-details {
+   
+    min-height: 175px;
+
+}
+
+.cms-home .products-grid.grid .product-item-details .price-box {
+    margin: auto 0;
+}
+
+.cms-home .products-grid.grid .product-item-details .price-box .price {
+    font-size: 2rem;
+}
+
+.cms-home .products-grid.grid .product-item-details .product-item-actions {
+
+   margin-top: auto;
+
+}
+
+
+@media only screen and (min-width: 767px) {
+    body.cms-home .admin__data-grid-outer-wrap .product-items, body.cms-home .block-new-products .product-items {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}
+
 /*************************************************************************/
 /******************* Uber-uns & kontakt **********************************/
 
@@ -318,6 +399,48 @@ body.catalog-category-view ol.product-items .product-item {
     margin-right: 3%;
     margin-bottom: 60px;
 }
+
+body.catalog-category-view #maincontent .products.wrapper.grid.products-grid.products-related .product-item-details .product-item-name {
+
+    min-height: 40px !important;
+    }
+
+/*************************************************************************/
+/******************* Catalog Product *************************************/
+
+body.catalog-product-view .column.main .product-info-main .product-info-price{ 
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+body.catalog-product-view .column.main .product-info-main .price-final_price {
+    display: flex;
+    width: auto;
+}
+
+body.catalog-product-view .column.main .product-info-main .price-final_price .price-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+body.catalog-product-view .column.main .product-info-main .price-final_price .price-container .price-wrapper {
+    margin-bottom: 0;
+}
+
+body.catalog-product-view .column.main .product-info-main .price-details {
+    display: flex;
+    margin-left: 10px;
+    align-items: flex-end;
+    padding-bottom: 10px;
+}
+
+body.catalog-product-view .column.main .product-info-main .product-info-stock-sku {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+}
+
 
 /*************************************************************************/
 /******************* Checkout Page ***************************************/
