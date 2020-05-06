@@ -55,7 +55,7 @@ body {
 /*************************************************************************/
 /******************* Header **********************************************/
 .page-wrapper .page-header .header.content {
-    padding: 20px;
+    padding: 20px 20px 20px 50px;
     display: flex;
     align-items: center;
 }
@@ -445,18 +445,15 @@ body.catalog-product-view .column.main .product-info-main .product-info-stock-sk
 /*************************************************************************/
 /******************* Checkout Page ***************************************/
 
-body.checkout-index-index #maincontent {
-    padding: 80px 40px;
+body.checkout-index-index #additional_checkout_attributes .actions-toolbar .button.action.back {
+    display:none;
 }
 
-body.checkout-index-index #custom-checkout-form {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
+body.checkout-index-index #additional_checkout_attributes select {
+    width: auto;
 }
 
-body.checkout-index-index #custom-checkout-form .admin__control-checkbox {
-margin-top: 0;
-    top: 0;
-    margin-right: 20px;
+body.checkout-index-index #additional_checkout_attributes select[name="additional_checkout_attributes[lieferoptionen]"] option:first-child {
+    display:none;
 }
+
