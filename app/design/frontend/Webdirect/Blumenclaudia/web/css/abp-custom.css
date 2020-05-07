@@ -225,7 +225,53 @@ border-top: 3px solid #f8d690;
     
 }
 
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 767px) and (max-width: 864px) {
+
+    .page-header .logo img {
+        width:80%;
+    }
+
+    .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) {
+        padding-left: 35%;
+        display: flex;
+        align-items: center;
+    }
+
+    .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) .level0.ui-menu-item {
+        margin: 0;
+    }
+
+    .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) .level0.ui-menu-item span {
+        font-size: 14px;
+    }
+
+    .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) .level0.ui-menu-item > a > span:after {
+        display:none;
+    }
+
+    .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) .level0.ui-menu-item > a {
+
+        padding: 0 10px;
+    }
+}
+
+@media only screen and (min-width: 865px) and (max-width: 1089px) {
+    
+    .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) {
+        padding-left: 35%;
+        display: flex;
+        align-items: center;
+    }
+    .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) .level0.ui-menu-item {
+        margin: 0;
+    }
+
+    .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) .level0.ui-menu-item span {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 1090px) {
     
     .page-wrapper .sections.nav-sections .navigation .ui-menu:not(.submenu) {
         padding-left: 40%;
