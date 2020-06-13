@@ -7,9 +7,7 @@
 -->
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="page.top">
-            <block class="ABPPRK\LoadingSpinner\Block\Spinner\Spinner" name="spinner" before="-"></block>
-        </referenceContainer>
+        
         <referenceContainer name="header.container">
             <referenceBlock name="top.search" remove="true"/>
             <referenceBlock name="catalog.compare.link" remove="true"/>

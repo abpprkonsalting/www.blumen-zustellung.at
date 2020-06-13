@@ -1,7 +1,7 @@
 <?php
 return [
     'modules' => [
-        'ABPPRK_LoadingSpinner' => 1,
+        'ABPPRK_LoadingSpinner' => 0,
         'Magento_Store' => 1,
         'Magento_Directory' => 1,
         'Magento_Theme' => 1,
