@@ -212,6 +212,10 @@ border-top: 3px solid #f8d690;
 }
 
 @media only screen and (max-width: 767px) {
+    .page-header .logo {
+        margin: 0px auto 0px 30px;
+    
+    }
 
     .page-wrapper .sections.nav-sections .section-item-title.nav-sections-item-title {
         display:none;
@@ -288,6 +292,46 @@ border-top: 3px solid #f8d690;
         display: flex;
         align-items: center;
     }
+
+  
+  
+}
+
+
+  @media only screen and (max-width: 600px){
+
+    
+    .page-wrapper .page-header .header.content {
+        padding: 20px 0px 20px 20px;
+       
+    }
+    .page-header .header.links {
+
+        padding-inline-start: 0px !important;
+    }
+    .page-header .header.links a{
+
+        margin-left: 0px !important;
+    }
+
+    .page-header .minicart-wrapper{
+
+        margin-left: 5px !important;
+        margin-top: 0px !important;
+    }
+    .page-header .dropdown-block.language-block{
+
+        margin-left: 5px !important; 
+    }
+    
+
+  }
+
+  @media only screen and (min-width: 600px){
+
+
+
+
 }
 
 
@@ -302,6 +346,10 @@ border-top: 3px solid #f8d690;
     width: 100%;
     display: flex;
     padding: 60px 20px;
+}
+
+.footer.content .some-class > div {
+    flex-wrap: wrap;
 }
 
 @media only screen and (min-width: 768px) {
@@ -431,11 +479,71 @@ body.cms-home .block-new-products .pager .item.pages-item-previous .action {
 
 
 @media only screen and (min-width: 767px) {
-    body.cms-home .admin__data-grid-outer-wrap .product-items, body.cms-home .block-new-products .product-items {
-        display: flex;
+
+    body.cms-home .admin__data-grid-outer-wrap .product-items,
+    body.cms-home .block-new-products .product-items {
+        display        : flex;
         justify-content: space-evenly;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .cms-home .column.main > div:nth-child(2) {
+
+        display: none !important;
+    }
+
+
+}
+
+@media only screen and (min-width:640px) and (max-width:767px) {
+
+    .cms-home .block.widget .products-grid .product-items.widget-new-grid li {
+
+
+        width: calc((100% - 4%)/2);
+        margin-top: 50px;
+    margin-bottom: 50px;
+
+    }
+
+
+}
+
+
+@media only screen and (max-width:640px) {
+
+    .cms-home .block.widget .products-grid .product-items.widget-new-grid li {
+
+
+        width          : calc((100% - 4%)/1);
+        display        : flex;
+        justify-content: center;
+        margin-top: 50px;
+    margin-bottom: 50px;
+    }
+
+
+}
+
+@media only screen and (max-width: 400px) {
+
+    .cms-home .column.main>div:first-child>div:first-child>div:first-child {
+
+        flex-direction: column;
+        align-items   : center;
+
+    }
+
+    .cms-home .column.main>div:first-child>div:first-child>div:first-child * {
+
+        text-align: center !important;
+
+    }
+
+}
+  
+
 
 /*************************************************************************/
 /******************* Uber-uns & kontakt **********************************/
