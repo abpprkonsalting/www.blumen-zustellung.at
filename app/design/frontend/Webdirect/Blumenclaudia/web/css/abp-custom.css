@@ -404,6 +404,14 @@ body.cms-home .home-flower-container {
     margin: auto auto;
 }
 
+body.cms-home .truck-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    font-size: 16px;
+    line-height: 20px;
+}
+
 body.cms-home .flower-widget-container .block-category-link {
     position: absolute;
     top: 0;
@@ -517,11 +525,11 @@ body.cms-home .block-new-products .pager .item.pages-item-previous .action {
     .cms-home .block.widget .products-grid .product-items.widget-new-grid li {
 
 
-        width          : calc((100% - 4%)/1);
-        display        : flex;
+        width: calc((100% - 4%)/1);
+        display: flex;
         justify-content: center;
         margin-top: 50px;
-    margin-bottom: 50px;
+        margin-bottom: 50px;
     }
 
 
@@ -529,14 +537,12 @@ body.cms-home .block-new-products .pager .item.pages-item-previous .action {
 
 @media only screen and (max-width: 400px) {
 
-    .cms-home .column.main>div:first-child>div:first-child>div:first-child {
-
+    body.cms-home .truck-wrapper {
         flex-direction: column;
         align-items   : center;
-
     }
 
-    .cms-home .column.main>div:first-child>div:first-child>div:first-child * {
+    body.cms-home .truck-wrapper * {
 
         text-align: center !important;
 
