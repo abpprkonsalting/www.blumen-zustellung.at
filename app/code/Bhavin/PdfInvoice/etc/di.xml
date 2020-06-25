@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Bhavin, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	
+	<virtualType name="bhavin_pdf_invoice_gird_filter_pool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>	
+	
+	<!-- Start Pdf Template Settigns XML-->
+	<virtualType name="bhavin_pdf_invoice_pdftemplate_grid_data_provider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Bhavin\PdfInvoice\Model\ResourceModel\Pdftemplate\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">bhavin_pdf_invoice_gird_filter_pool</argument>
+        </arguments>
+    </virtualType>
+	<type name="Bhavin\PdfInvoice\Model\ResourceModel\Pdftemplate\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bhavin_pdftemplate</argument>
+            <argument name="eventPrefix" xsi:type="string">bhavin_pdfinvoice_pdftemplate_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">pdftemplate_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Bhavin\PdfInvoice\Model\ResourceModel\Pdftemplate</argument>
+        </arguments>
+    </type>
+	<!-- End Pdf Template Settigns XML-->
+	
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+				<item name="sales_pdftemplate_listing_data_source" xsi:type="string">Bhavin\PdfInvoice\Model\ResourceModel\Pdftemplate\Grid\Collection</item>				
+            </argument>
+        </arguments>
+    </type>
+	
+</config>
