@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Email Order Items List" design_abstraction="custom">
+    <update handle="sales_email_order_renderers"/>
+    <update handle="sales_email_item_price"/>
+    <body>
+        <referenceBlock name="items" template="Bhavin_PdfInvoice::email/items.phtml">
+            <referenceBlock name="order_totals" template="Bhavin_PdfInvoice::order/totals.phtml">
+                <referenceBlock name="tax" template="Bhavin_PdfInvoice::tax.phtml"></referenceBlock>
+            </referenceBlock>
+        </referenceBlock>
+    </body>
+</page>

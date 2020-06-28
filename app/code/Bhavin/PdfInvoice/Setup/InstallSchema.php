@@ -59,6 +59,13 @@ class InstallSchema implements InstallSchemaInterface {
 				'Status'
 			)
 			->addColumn(
+				'target',
+				\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+				1,
+				[],
+				'Target'
+			)
+			->addColumn(
 				'created_at',
 				\Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
 				null,

@@ -76,7 +76,7 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="targe_document" sortOrder="20">
+        <field name="target" sortOrder="20">
             <argument name="data" xsi:type="array">
                 <item name="options" xsi:type="object">Bhavin\PdfInvoice\Model\Source\Target</item>
                 <item name="config" xsi:type="array">
@@ -84,7 +84,7 @@
                     <item name="label" xsi:type="string" translate="true">Target Document</item>
                     <item name="formElement" xsi:type="string">select</item>
                     <item name="source" xsi:type="string">pdftemplate</item>
-                    <item name="dataScope" xsi:type="string">template_data.target_document</item>
+                    <item name="dataScope" xsi:type="string">target</item>
                     <item name="default" xsi:type="string">0</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>

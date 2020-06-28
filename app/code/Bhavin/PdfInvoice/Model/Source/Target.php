@@ -14,9 +14,6 @@ class Target implements \Magento\Framework\Data\OptionSourceInterface {
 
 	const SHIPMENT_PDF = 0;
 	const INVOICE_PDF = 1;
-	const SHIPPING_LABEL_PDF = 2;
-	const KARTENTEXT_PDF = 3;
-	const UMSCHLAG_PDF = 4;
 
 	/**
 	 * @return array

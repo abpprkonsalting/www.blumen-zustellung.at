@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Sales\Block\Order\Email\Items\DefaultItems */
+
+/** @var $_item \Magento\Sales\Model\Order\Item */
+$_item = $block->getItem();
+$qty = number_format ( $_item->getQtyOrdered(),2);
+$taxP = number_format ( $_item->getTaxPercent(),2);
+$taxA = number_format ( $_item->getTaxAmount(),2);
+$price = number_format ( $_item->getBasePrice(),2);
+$rprice = number_format ( $_item->getOriginalPrice(),2);
+?>
+<tr style="font-size: 16px; width: 12%; text-align: center; background-color: lightgrey; font-weight: bold;">
+    <td class="item-info<?php if ($block->getItemOptions()): ?> has-extra<?php endif; ?>"style="width: 24%; text-align: left;">
+        <p class="product-name"><?= $qty ?> * <?= $block->escapeHtml($_item->getName()) ?></p>
+    </td>
+    <td></td>
+    <td style="text-align:center"><?= $taxP ?> %</td>
+    <td class="item-price exl" style="text-align:center">
+    € <?= /* @escapeNotVerified */  $price ?>
+    </td>
+    <td class="item-price ink" style="text-align:center">
+    €   <?= /* @escapeNotVerified */  $rprice ?>
+    </td>
+    <td class="item-summe exl" style="text-align:center">
+    €   <?= /* @escapeNotVerified */  number_format ( (double)$price * (double)$_item->getQtyOrdered(),2) ?>
+    </td>
+    <td class="item-sume ink" style="text-align:right;padding-right:20px;">
+    €   <?= /* @escapeNotVerified */  number_format ( (double)$rprice * (double)$_item->getQtyOrdered(),2) ?>
+    </td>
+</tr>
+<?php if ($_item->getGiftMessageId() && $_giftMessage = $this->helper('Magento\GiftMessage\Helper\Message')->getGiftMessage($_item->getGiftMessageId())): ?>
+<tr>
+    <td colspan="3" class="item-extra">
+        <table class="message-gift">
+            <tr>
+                <td>
+                    <h3><?= /* @escapeNotVerified */  __('Gift Message') ?></h3>
+                    <strong><?= /* @escapeNotVerified */  __('From:') ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                    <br /><strong><?= /* @escapeNotVerified */  __('To:') ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                    <br /><strong><?= /* @escapeNotVerified */  __('Message:') ?></strong>
+                    <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<?php endif; ?>
