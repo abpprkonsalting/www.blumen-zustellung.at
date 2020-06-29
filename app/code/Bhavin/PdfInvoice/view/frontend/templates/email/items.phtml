@@ -9,61 +9,90 @@
 ?>
 <?php $_order = $block->getOrder() ?>
 <?php if ($_order): ?>
-    <?php $_items = $_order->getAllItems(); ?>
-    <table class="email-items" style="width: 100%;">
-        <thead>
-            <tr style="font-size: 16px; background-color: grey; text-align: center; width: 12%;">
-                <th class="item-info" style="color: white; width: 24%; text-align: left;">
-                    <?= /* @escapeNotVerified */  __('Items') ?>
-                </th>
-                <th class="item-info" style="color: white;">
-                    <?= /* @escapeNotVerified */  __('Modell') ?>
-                </th>
-                <th class="item-price" style="color: white;">
-                    <?= /* @escapeNotVerified */  __('Tax Amount') ?>
-                </th>
-                <th class="item-price" style="color: white;">
-                    <?= /* @escapeNotVerified */  __('Preis(exkl)') ?>
-                </th>
-                <th class="item-price" style="color: white;">
-                    <?= /* @escapeNotVerified */  __('Preis(inkl)') ?>
-                </th>
-                <th class="item-price" style="color: white;">
-                    <?= /* @escapeNotVerified */  __('Summe(exkl)') ?>
-                </th>
-                <th class="item-price" style="color: white;">
-                    <?= /* @escapeNotVerified */  __('Summe(inkl)') ?>
-                </th>
-            </tr>
-        </thead>
-        <?php foreach ($_items as $_item): ?>
-            <?php if (!$_item->getParentItem()) : ?>
-                <tbody>
-                    <?= $block->getItemHtml($_item) ?>
-                </tbody>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    </table>
-    <table style="width:100%;">
-        <tbody style="width:100%;">
-            <?= $block->getChildHtml('order_totals') ?>
-        <tbody>
-    </table>
-    <?php if ($this->helper('Magento\GiftMessage\Helper\Message')->isMessagesAllowed('order', $_order, $_order->getStore()) && $_order->getGiftMessageId()): ?>
-        <?php $_giftMessage = $this->helper('Magento\GiftMessage\Helper\Message')->getGiftMessage($_order->getGiftMessageId()); ?>
-        <?php if ($_giftMessage): ?>
-            <br />
-            <table class="message-gift">
-                <tr>
-                    <td>
-                        <h3><?= /* @escapeNotVerified */  __('Gift Message for this Order') ?></h3>
-                        <strong><?= /* @escapeNotVerified */  __('From:') ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
-                        <br /><strong><?= /* @escapeNotVerified */  __('To:') ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
-                        <br /><strong><?= /* @escapeNotVerified */  __('Message:') ?></strong>
-                        <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
-                    </td>
+    <?php $entityType = $_order->getEntityType();
+        if ($entityType == 'invoice'): ?>
+        <?php $_items = $_order->getAllItems(); ?>
+        <table class="email-items" style="width: 100%;">
+            <thead>
+                <tr style="font-size: 16px; background-color: grey; text-align: center; width: 100%;">
+                    <th class="item-info" style="color: white; width: 24%; text-align: left;">
+                        <?= /* @escapeNotVerified */  __('Items') ?>
+                    </th>
+                    <th class="item-info" style="color: white;">
+                        <?= /* @escapeNotVerified */  __('Modell') ?>
+                    </th>
+                    <th class="item-price" style="color: white;">
+                        <?= /* @escapeNotVerified */  __('Tax Amount') ?>
+                    </th>
+                    <th class="item-price" style="color: white;">
+                        <?= /* @escapeNotVerified */  __('Preis(exkl)') ?>
+                    </th>
+                    <th class="item-price" style="color: white;">
+                        <?= /* @escapeNotVerified */  __('Preis(inkl)') ?>
+                    </th>
+                    <th class="item-price" style="color: white;">
+                        <?= /* @escapeNotVerified */  __('Summe(exkl)') ?>
+                    </th>
+                    <th class="item-price" style="color: white;">
+                        <?= /* @escapeNotVerified */  __('Summe(inkl)') ?>
+                    </th>
                 </tr>
-            </table>
+            </thead>
+            <?php foreach ($_items as $_item): ?>
+                <?php if (!$_item->getParentItem()) : ?>
+                    <tbody>
+                        <?= $block->getItemHtml($_item) ?>
+                    </tbody>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </table>
+        <table style="width:100%;">
+            <tbody style="width:100%;">
+                <?= $block->getChildHtml('order_totals') ?>
+            <tbody>
+        </table>
+        <?php if ($this->helper('Magento\GiftMessage\Helper\Message')->isMessagesAllowed('order', $_order, $_order->getStore()) && $_order->getGiftMessageId()): ?>
+            <?php $_giftMessage = $this->helper('Magento\GiftMessage\Helper\Message')->getGiftMessage($_order->getGiftMessageId()); ?>
+            <?php if ($_giftMessage): ?>
+                <br />
+                <table class="message-gift">
+                    <tr>
+                        <td>
+                            <h3><?= /* @escapeNotVerified */  __('Gift Message for this Order') ?></h3>
+                            <strong><?= /* @escapeNotVerified */  __('From:') ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                            <br /><strong><?= /* @escapeNotVerified */  __('To:') ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                            <br /><strong><?= /* @escapeNotVerified */  __('Message:') ?></strong>
+                            <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                        </td>
+                    </tr>
+                </table>
+            <?php endif; ?>
         <?php endif; ?>
+    <?php elseif ($entityType == 'shipment'): ?>
+        <?php $_items = $_order->getAllItems(); ?>
+        <table class="email-items" style="width: 100%;">
+            <thead>
+                <tr style="font-size: 16px; background-color: grey; text-align: center; width: 100%;">
+                    <th class="item-info" style="color: white; width: 70%; text-align: left;padding-left:50px;">
+                        <?= /* @escapeNotVerified */  __('Items') ?>
+                    </th>
+                    <th class="item-info" style="color: white; width: 30%; text-align: center;">
+                        <?= /* @escapeNotVerified */  __('Modell') ?>
+                    </th>
+                </tr>
+            </thead>
+            <?php foreach ($_items as $_item): ?>
+                <?php if (!$_item->getParentItem()) : ?>
+                    <tbody>
+                        <tr style="font-size: 16px; width: 100%; text-align: center; background-color: lightgrey; font-weight: bold;">
+                            <td class="item-info" style="width: 70%; text-align: left;padding-left:50px;">
+                                <p class="product-name"><?= number_format ( $_item->getQtyOrdered(),0) ?> * <?= $block->escapeHtml($_item->getName()) ?></p>
+                            </td>
+                            <td style="width: 70%; text-align: left;"></td>
+                        </tr>
+                    </tbody>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </table>
     <?php endif; ?>
 <?php endif; ?>

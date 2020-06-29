@@ -18,4 +18,10 @@
                 sortOrder="10"
                 disabled="false"/>
     </type>
+    <type name="Magento\Shipping\Block\Adminhtml\View">
+        <plugin name="change_print_button_url"
+                type="Bhavin\PdfInvoice\Model\Plugin\PrintShipment"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
 </config>

@@ -11,7 +11,7 @@ use Bhavin\PdfInvoice\Model\PdftemplateFactory;
 use Bhavin\PdfInvoice\Model\Source\Status;
 use Bhavin\PdfInvoice\Model\Source\Target;
 
-class Printinvoice {
+class PrintShipment {
 
 	/**
 	 * @var \Magento\Backend\Model\UrlInterface
@@ -32,7 +32,7 @@ class Printinvoice {
 	 */
 	protected $_pdftemplateFactory;
 	/**
-	 * Printinvoice constructor.
+	 * PrintShipment constructor.
 	 * @param \Magento\Framework\Registry $coreRegistry
 	 * @param \Magento\Backend\Model\UrlInterface $urlInterface
 	 * @param Data $dataHelper
@@ -55,8 +55,8 @@ class Printinvoice {
 	/**
 	 * @return mixed
 	 */
-	public function getInvoice() {
-		return $this->coreRegistry->registry('current_invoice');
+	public function getShipment() {
+		return $this->coreRegistry->registry('current_shipment');
 	}
 
 	/**
@@ -65,18 +65,18 @@ class Printinvoice {
 	 * @return string
 	 */
 	public function afterGetPrintUrl($subject, $result) {
-		$invoiceStore = $this->getInvoice()->getOrder()->getStoreId();
+		$shipmentStore = $this->getShipment()->getOrder()->getStoreId();
 
-		if (!$this->dataHelper->isExtentionEnable($invoiceStore)) {
+		if (!$this->dataHelper->isExtentionEnable($shipmentStore)) {
 			return $result;
 		}
 
 		$pdftemplateFactory = $this->_pdftemplateFactory->create();
 
 		$collection = $pdftemplateFactory->getCollection();
-		$collection->addFieldToFilter('store_id', [["finset" => $invoiceStore], ["finset" => 0]])
+		$collection->addFieldToFilter('store_id', [["finset" => $shipmentStore], ["finset" => 0]])
 			->addFieldToFilter('status', Status::STATUS_ENABLED)
-			->addFieldToFilter('target', Target::INVOICE_PDF)
+			->addFieldToFilter('target', Target::SHIPMENT_PDF)
 			->setOrder('updated_at', 'DESC');
 		$lastItem = $collection->getLastItem();
 		$lastItem->getId();
@@ -96,8 +96,8 @@ class Printinvoice {
 			'sales/*/printpdf',
 			[
 				'template_id' => $lastItem->getId(),
-				'order_id' => $this->getInvoice()->getOrder()->getId(),
-				'invoice_id' => $this->getInvoice()->getId(),
+				'order_id' => $this->getShipment()->getOrder()->getId(),
+				'shipment_id' => $this->getShipment()->getId(),
 			]
 		);
 	}

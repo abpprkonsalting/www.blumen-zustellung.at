@@ -10,6 +10,7 @@ use Bhavin\PdfInvoice\Helper\Data;
 use Bhavin\PdfInvoice\Model\Pdftemplate;
 use Bhavin\PdfInvoice\Model\Source\Orientation;
 use Bhavin\PdfInvoice\Model\Template\Processor;
+use Bhavin\PdfInvoice\Model\Source\Target;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Payment\Helper\Data as PaymentHelper;
@@ -43,6 +44,11 @@ class Pdf extends AbstractHelper {
 	 * @var invoice;
 	 */
 	protected $invoice;
+
+	/**
+	 * @var shipment;
+	 */
+	protected $shipment;
 
 	/**
 	 * @var template
@@ -116,6 +122,18 @@ class Pdf extends AbstractHelper {
 	}
 
 	/**
+	 * @param \Magento\Sales\Model\Order\Shipment $shipment
+	 * @return $this
+	 */
+	public function setShipment(\Magento\Sales\Model\Order\Shipment $shipment) {
+		$this->shipment = $shipment;
+
+		$this->setOrder($shipment->getOrder());
+
+		return $this;
+	}
+
+	/**
 	 * @param \Magento\Sales\Model\Order $order
 	 * @return $this
 	 */
@@ -177,14 +195,26 @@ class Pdf extends AbstractHelper {
 	 * @return string
 	 */
 	protected function _transport() {
-		$invoice = $this->invoice;
+
+		$templateType = $this->template->getData()['target'];
+
+		switch ($this->template->getData()['target']) {
+			case '0':
+				$var = $this->shipment;
+				break;
+			
+			case '1':
+				$var = $this->invoice;
+				break;
+		}
+		//$invoice = $this->invoice;
 
 		$order = $this->order;
 
 		$transport = [
 			'order' => $order,
-			'invoice' => $invoice,
-			'comment' => $invoice->getCustomerNoteNotify() ? $invoice->getCustomerNote() : '',
+			'invoice' => $var,
+			'comment' => $var->getCustomerNoteNotify() ? $var->getCustomerNote() : '',
 			'billing' => $order->getBillingAddress(),
 			'payment_html' => $this->getPaymentHtml($order),
 			'store' => $order->getStore(),
