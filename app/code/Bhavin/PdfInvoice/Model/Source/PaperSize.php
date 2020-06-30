@@ -44,7 +44,7 @@ class PaperSize implements \Magento\Framework\Data\OptionSourceInterface {
 			['value' => self::USE_A3, 'label' => __('A3')],
 			['value' => self::USE_A5, 'label' => __('A5')],
 			['value' => self::USE_A6, 'label' => __('A6')],
-			['value' => self::USE_LATTER, 'label' => __('Latter')],
+			['value' => self::USE_LATTER, 'label' => __('Letter')],
 			['value' => self::USE_LEGAL, 'label' => __('Legal')],
 		];
 	}

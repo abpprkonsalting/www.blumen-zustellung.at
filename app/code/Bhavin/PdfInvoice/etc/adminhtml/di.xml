@@ -24,4 +24,9 @@
                 sortOrder="10"
                 disabled="false"/>
     </type>
+   <type name="\Magento\Sales\Block\Adminhtml\Order\View">
+        <plugin name="button_print_shipping_label" 
+                type="Bhavin\PdfInvoice\Model\Plugin\PrintShippingLabel" />
+    </type>
+    <preference for="Magento\Sales\Model\Order" type="Bhavin\PdfInvoice\Model\Rewrite\Order" />
 </config>

@@ -14,6 +14,7 @@ class Target implements \Magento\Framework\Data\OptionSourceInterface {
 
 	const SHIPMENT_PDF = 0;
 	const INVOICE_PDF = 1;
+	const SHIPPING_LABEL_PDF = 2;
 
 	/**
 	 * @return array
@@ -33,7 +34,8 @@ class Target implements \Magento\Framework\Data\OptionSourceInterface {
 	public function toOptionArray() {
 		return [
 			['value' => self::SHIPMENT_PDF, 'label' => __('SHIPMENT PDF')],
-			['value' => self::INVOICE_PDF, 'label' => __('INVOICE PDF')]
+			['value' => self::INVOICE_PDF, 'label' => __('INVOICE PDF')],
+			['value' => self::SHIPPING_LABEL_PDF, 'label' => __('SHIPPING LABEL PDF')]
 		];
 	}
 }

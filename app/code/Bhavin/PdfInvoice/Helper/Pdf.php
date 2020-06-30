@@ -197,30 +197,53 @@ class Pdf extends AbstractHelper {
 	protected function _transport() {
 
 		$templateType = $this->template->getData()['target'];
+		$order = $this->order;
 
 		switch ($this->template->getData()['target']) {
 			case '0':
-				$var = $this->shipment;
+				$shipment = $this->shipment;
+				$transport = [
+					'order' => $order,
+					'invoice' => $shipment,
+					'comment' => $shipment->getCustomerNoteNotify() ? $shipment->getCustomerNote() : '',
+					'billing' => $order->getBillingAddress(),
+					'payment_html' => $this->getPaymentHtml($order),
+					'store' => $order->getStore(),
+					'formattedShippingAddress' => $this->getFormattedShippingAddress($order),
+					'formattedBillingAddress' => $this->getFormattedBillingAddress($order),
+				];
 				break;
 			
 			case '1':
-				$var = $this->invoice;
+				$invoice = $this->invoice;
+				$transport = [
+					'order' => $order,
+					'invoice' => $invoice,
+					'comment' => $invoice->getCustomerNoteNotify() ? $invoice->getCustomerNote() : '',
+					'billing' => $order->getBillingAddress(),
+					'payment_html' => $this->getPaymentHtml($order),
+					'store' => $order->getStore(),
+					'formattedShippingAddress' => $this->getFormattedShippingAddress($order),
+					'formattedBillingAddress' => $this->getFormattedBillingAddress($order),
+				];
 				break;
+
+			case '2':
+				$transport = [
+					'order' => $order,
+					'invoice' => '',
+					'comment' => '',
+					'billing' => $order->getBillingAddress(),
+					'payment_html' => $this->getPaymentHtml($order),
+					'store' => $order->getStore(),
+					'formattedShippingAddress' => $this->getFormattedShippingAddress($order),
+					'formattedBillingAddress' => $this->getFormattedBillingAddress($order),
+				];
+				break;
+			default:
+				break;
+
 		}
-		//$invoice = $this->invoice;
-
-		$order = $this->order;
-
-		$transport = [
-			'order' => $order,
-			'invoice' => $var,
-			'comment' => $var->getCustomerNoteNotify() ? $var->getCustomerNote() : '',
-			'billing' => $order->getBillingAddress(),
-			'payment_html' => $this->getPaymentHtml($order),
-			'store' => $order->getStore(),
-			'formattedShippingAddress' => $this->getFormattedShippingAddress($order),
-			'formattedBillingAddress' => $this->getFormattedBillingAddress($order),
-		];
 
 		$processor = $this->processor;
 

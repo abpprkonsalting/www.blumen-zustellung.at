@@ -175,5 +175,58 @@ class InstallData implements Setup\InstallDataInterface {
 		</div>
 		</div>';
 		$this->pdfTemplate->setData($pdftemplateData)->save();
+
+		$pdftemplateData['name'] = 'Default Shipping Label Template';
+		$pdftemplateData['store_id'] = 0;
+		$pdftemplateData['status'] = 1;
+		$pdftemplateData['target'] = 2;
+		$pdftemplateData['template_data']['template_file_name'] = 'default_shipping_label';
+		$pdftemplateData['template_data']['margin_top'] = 10;
+		$pdftemplateData['template_data']['margin_bottom'] = 10;
+		$pdftemplateData['template_data']['margin_left'] = 5;
+		$pdftemplateData['template_data']['margin_right'] = 5;
+		$pdftemplateData['template_data']['paper_size'] = 0;
+		$pdftemplateData['template_data']['paper_orientation'] = 1;
+		$pdftemplateData['template_data']['body'] = '<div>
+		<table class="header-table" style="width: 100%;">
+		<tbody>
+		<tr style="width: 100%;">
+		<td colspan="2">
+		<p style="font-weight: bold; margin-bottom: 5px; font-size: 42px;">ZUSTELLUNG</p>
+		<p style="margin-top: 0; margin-bottom: 10px; font-size: 26px;">BOTENDIENST</p>
+		<p style="margin-top: 0; margin-bottom: 20px; font-size: 18px;">{{var order.getDeliveryDate()}}</p>
+		<p style="margin-top: 0; margin-bottom: 15px; font-size: 26px;">BESTELLNUMMER</p>
+		<p style="margin-top: 0; font-size: 24px;">{{var order.increment_id}}</p>
+		</td>
+		<td colspan="2">
+		<div id="logo-pdf" class="column" style="width: 100%; text-align: right;"><img style="width: 350px; padding: 5% 10%;" src="{{media url=&quot;logo_b_w.png&quot;}}" alt=""></div>
+		</td>
+		</tr>
+		<tr style="margin-top: 20px; width: 100%;">
+		<td colspan="2">
+		<p style="font-weight: bold; margin-bottom: 20px; font-size: 26px;">LIEFERANSCHRIFT</p>
+		</td>
+		<td colspan="1">
+		<p style="font-weight: bold; margin-bottom: 20px; font-size: 26px;">DATUM</p>
+		</td>
+		<td colspan="1">
+		<p style="font-weight: bold; margin-bottom: 20px; font-size: 26px;">LIEFERZEIT</p>
+		</td>
+		</tr>
+		<tr style="margin-top: 10px; width: 100%;">
+		<td colspan="1">
+		<p style="margin-top: 0; margin-bottom: 10px; font-size: 22px;">{{var formattedBillingAddress|raw}}</p>
+		</td>
+		</tr>
+		<tr style="margin-top: 10px; width: 100%;">
+		<td colspan="2">&nbsp;</td>
+		<td colspan="2">
+		<p style="font-weight: bold; margin-bottom: 20px; font-size: 26px;">UNTERSCHRIFT</p>
+		</td>
+		</tr>
+		</tbody>
+		</table>
+		</div>';
+		$this->pdfTemplate->setData($pdftemplateData)->save();
 	}
 }
