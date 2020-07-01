@@ -36,6 +36,8 @@ class Pdf extends AbstractHelper {
 		3 => 'A6',
 		4 => 'LETTER',
 		5 => 'LEGAL',
+		6 => [120,235],
+		7 => [90,140]
 	];
 
 	protected $order;
@@ -229,6 +231,30 @@ class Pdf extends AbstractHelper {
 				break;
 
 			case '2':
+				$transport = [
+					'order' => $order,
+					'invoice' => '',
+					'comment' => '',
+					'billing' => $order->getBillingAddress(),
+					'payment_html' => $this->getPaymentHtml($order),
+					'store' => $order->getStore(),
+					'formattedShippingAddress' => $this->getFormattedShippingAddress($order),
+					'formattedBillingAddress' => $this->getFormattedBillingAddress($order),
+				];
+				break;
+			case '3':
+				$transport = [
+					'order' => $order,
+					'invoice' => '',
+					'comment' => '',
+					'billing' => $order->getBillingAddress(),
+					'payment_html' => $this->getPaymentHtml($order),
+					'store' => $order->getStore(),
+					'formattedShippingAddress' => $this->getFormattedShippingAddress($order),
+					'formattedBillingAddress' => $this->getFormattedBillingAddress($order),
+				];
+				break;
+			case '4':
 				$transport = [
 					'order' => $order,
 					'invoice' => '',

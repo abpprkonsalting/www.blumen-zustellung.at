@@ -228,5 +228,50 @@ class InstallData implements Setup\InstallDataInterface {
 		</table>
 		</div>';
 		$this->pdfTemplate->setData($pdftemplateData)->save();
+
+		$pdftemplateData['name'] = 'Default Post Card Front Template';
+		$pdftemplateData['store_id'] = 0;
+		$pdftemplateData['status'] = 1;
+		$pdftemplateData['target'] = 3;
+		$pdftemplateData['template_data']['template_file_name'] = 'default_post_card_front';
+		$pdftemplateData['template_data']['margin_top'] = 0;
+		$pdftemplateData['template_data']['margin_bottom'] = 0;
+		$pdftemplateData['template_data']['margin_left'] = 0;
+		$pdftemplateData['template_data']['margin_right'] = 0;
+		$pdftemplateData['template_data']['paper_size'] = 3;
+		$pdftemplateData['template_data']['paper_orientation'] = 1;
+		$pdftemplateData['template_data']['body'] = '<div style="background-position: center center; background-size: cover; height: 100%; text-align: center; vertical-align: middle; font-size: 36px; text-shadow: 2px 2px white; padding-top: 30%; background-image: url(\'Placeholder_for_card_background\');">{{trans "%name," name=$billing.getName()}}</div>';
+		$this->pdfTemplate->setData($pdftemplateData)->save();
+
+		$pdftemplateData['name'] = 'Default Post Card Back Template';
+		$pdftemplateData['store_id'] = 0;
+		$pdftemplateData['status'] = 1;
+		$pdftemplateData['target'] = 4;
+		$pdftemplateData['template_data']['template_file_name'] = 'default_post_card_back';
+		$pdftemplateData['template_data']['margin_top'] = 0;
+		$pdftemplateData['template_data']['margin_bottom'] = 0;
+		$pdftemplateData['template_data']['margin_left'] = 0;
+		$pdftemplateData['template_data']['margin_right'] = 0;
+		$pdftemplateData['template_data']['paper_size'] = 3;
+		$pdftemplateData['template_data']['paper_orientation'] = 1;
+		$pdftemplateData['template_data']['body'] = '<div style="width: 100%; height: 100%; background-position: center center; background-size: cover;">&nbsp;
+		<table class="header-table" style="width: 100%; z-index: 10;">
+		<tbody>
+		<tr style="width: 100%;">
+		<td style="width: 60%;" colspan="2">&nbsp;</td>
+		<td style="width: 40%;" colspan="1">
+		<div id="logo-pdf" class="column" style="width: 100%; text-align: right;"><img style="width: 200px; padding: 10px;" src="{{media url=&quot;logo/default/logo_2.png&quot;}}" alt=""></div>
+		</td>
+		</tr>
+		<tr style="margin-top: 20px; width: 100%;">
+		<td style="padding-left: 30px;" colspan="3">
+		<p style="font-size: 34px; text-shadow: 2px 2px white;">Placeholder_for_card_text</p>
+		</td>
+		</tr>
+		</tbody>
+		</table>
+		</div>';
+		$this->pdfTemplate->setData($pdftemplateData)->save();
+
 	}
 }
