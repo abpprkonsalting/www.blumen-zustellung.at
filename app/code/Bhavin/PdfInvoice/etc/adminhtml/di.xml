@@ -34,4 +34,5 @@
                 type="Bhavin\PdfInvoice\Model\Plugin\PrintCardPlugin"
                 sortOrder="1" />
     </type>
+    
 </config>
