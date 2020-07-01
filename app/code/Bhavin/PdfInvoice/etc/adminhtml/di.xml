@@ -29,4 +29,9 @@
                 type="Bhavin\PdfInvoice\Model\Plugin\PrintShippingLabel" />
     </type>
     <preference for="Magento\Sales\Model\Order" type="Bhavin\PdfInvoice\Model\Rewrite\Order" />
+    <type name="Magento\Sales\Block\Adminhtml\Order\View\Items\Renderer\DefaultRenderer">
+        <plugin name="bhavin-print-card-button" 
+                type="Bhavin\PdfInvoice\Model\Plugin\PrintCardPlugin"
+                sortOrder="1" />
+    </type>
 </config>
