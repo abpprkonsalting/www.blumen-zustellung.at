@@ -31,8 +31,10 @@ class PrintCardPlugin
     {
         if ($column == 'print-card'){
 
-			$disabled = 'disabled="disabled"';
-			$buttonUrl = "";
+			$disabledf = 'disabled="disabled"';
+			$disabledb = 'disabled="disabled"';
+			$buttonUrlf = "";
+			$buttonUrlb = "";
 			
 			$data = $item->getData();
 			$productOptions = $data["product_options"];
@@ -66,34 +68,46 @@ class PrintCardPlugin
 							$lastItemF = $collection->getLastItem();
 							$lastItemF->getId();
 							if ($lastItemF->getId()) {
-							
-								$collection = $pdftemplateFactory->getCollection();
-								$collection->addFieldToFilter('store_id', [["finset" => $orderStore], ["finset" => 0]])
-									->addFieldToFilter('status', Status::STATUS_ENABLED)
-									->addFieldToFilter('target', Target::POST_CARD_BACK)
-									->setOrder('updated_at', 'DESC');
-								$lastItemB = $collection->getLastItem();
-								$lastItemB->getId();
 
-								$disabled = "";
-
-								$buttonUrl = $this->_urlInterface->getUrl(
-									'sales/order_card/printpdf',
+								$buttonUrlf = $this->_urlInterface->getUrl(
+									'sales/order_cardf/printpdf',
 									[
-										'ftemplate_id' => $lastItemF->getId(),
+										'template_id' => $lastItemF->getId(),
 										'order_id' => $orderId,
 										'product_id' => $productId,
-										'btemplate_id' => $lastItemB->getId(),
 									]
-								);							
+								);
+								$disabledf = "";	
+							}
+							
+							$collection = $pdftemplateFactory->getCollection();
+							$collection->addFieldToFilter('store_id', [["finset" => $orderStore], ["finset" => 0]])
+								->addFieldToFilter('status', Status::STATUS_ENABLED)
+								->addFieldToFilter('target', Target::POST_CARD_BACK)
+								->setOrder('updated_at', 'DESC');
+							$lastItemB = $collection->getLastItem();
+							$lastItemB->getId();
+
+							if ($lastItemB->getId()) {
+
+								$buttonUrlb = $this->_urlInterface->getUrl(
+									'sales/order_cardb/printpdf',
+									[
+										'order_id' => $orderId,
+										'product_id' => $productId,
+										'template_id' => $lastItemB->getId(),
+									]
+								);
+								$disabledb = "";
 							}
 						}
 					}
 				}
 			}
 			
-			$html = "<button ".$disabled." title=\"Print Card\" type=\"button\" class=\"action-default scalable invoice\" 
-						onclick=\"setLocation('".$buttonUrl."')\"><span>Print</span></button>";
+			$html = "<button ".$disabledf." title=\"Print Card\" type=\"button\" class=\"action-default scalable invoice\" 
+						onclick=\"setLocation('".$buttonUrlf."')\"><span>Print Front</span></button><button ".$disabledb." title=\"Print Card\" type=\"button\" class=\"action-default scalable invoice\" 
+						onclick=\"setLocation('".$buttonUrlb."')\" style=\"margin-top:15px\"><span>Print Back</span></button>";
             $result = $html;
         }else{
             if ($field){

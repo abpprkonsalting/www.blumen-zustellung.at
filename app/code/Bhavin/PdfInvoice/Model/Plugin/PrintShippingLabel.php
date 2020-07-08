@@ -89,7 +89,7 @@ class PrintShippingLabel {
         $subject->addButton(
             'boendienst',
             [
-                'label' => __('Boendienst'),
+                'label' => __('Botendienst'),
                 'onclick' => "setLocation('" . $buttonUrl. "')",
                 'class' => 'ship primary'
             ]

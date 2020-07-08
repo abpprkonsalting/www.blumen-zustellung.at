@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-namespace Bhavin\PdfInvoice\Controller\Adminhtml\Order\Card;
+namespace Bhavin\PdfInvoice\Controller\Adminhtml\Order\Cardb;
 
 use Bhavin\PdfInvoice\Controller\Adminhtml\Order\Abstractpdf;
 use Bhavin\PdfInvoice\Helper\Pdf;
@@ -100,40 +100,7 @@ class Printpdf extends Abstractpdf {
 	 */
 	public function execute() {
 
-		$files = Array();
-		array_push($files,'var/'.$this->printTemplate('f'));
-		array_push($files,'var/'.$this->printTemplate('b'));
-		if(!extension_loaded('zip')){
-			Mage::log("Zip Extension does not loaded");
-			return false;
-		}
-		$zip = new \ZipArchive;
-		$zipFileName = 'var/card_front_and_back_' . time() . '.zip';
-		if(!$zip->open($zipFileName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE)){
-			Mage::log("Zip Archive Could not create");
-			return false;
-		}
-		foreach($files as $filePath){
-			$fileContent = str_replace(array('/','\\'), DIRECTORY_SEPARATOR, realpath($filePath));
-			$baseName = substr($filePath,4);
-		 	$result = $zip->addFile($fileContent, $baseName);
-		}
-		$zip->close();
-		if(file_exists($zipFileName)){
-
-			return $this->fileFactory->create(
-				$zipFileName,
-				file_get_contents($zipFileName),
-				DirectoryList::ROOT,
-				'application/pdf'
-			);
-		}
-		return;
-	}
-
-	private function printTemplate($t) {
-
-		$templateId = $this->getRequest()->getParam($t.'template_id');
+		$templateId = $this->getRequest()->getParam('template_id');
 
 		if (!$templateId) {
 			return $this->resultForwardFactory->create()->forward('noroute');
@@ -177,10 +144,12 @@ class Printpdf extends Abstractpdf {
 
 		$fileName = $pdfFileData['filename'] . "-" . $date . '.pdf';
 
-		file_put_contents ('var/'.$fileName , $pdfFileData['filestream'] );
-		
-		return $fileName;
-
+		return $this->fileFactory->create(
+			$fileName,
+			$pdfFileData['filestream'],
+			DirectoryList::VAR_DIR,
+			'application/pdf'
+		);
 	}
 
 	private function populateTemplate($order,$productId,$pdftemplate) {
@@ -194,21 +163,30 @@ class Printpdf extends Abstractpdf {
 		});
 		
 		$productOptions = $product[0]->getData()['product_options']['options'];
-		$text = $this->extractKartentext($productOptions);
-		$bildA = $this->extractBild($productOptions);
-
-		$bildUrlStart = strpos($bildA,'http');
-		$bildUrlEnd = strpos($bildA,"\"",$bildUrlStart) - $bildUrlStart;
-		$bildUrl = substr($bildA,$bildUrlStart,$bildUrlEnd);
-		$bildNameStart = strpos($bildA,'>') + 1;
-		$bildNameEnd = strpos($bildA,"<",$bildNameStart) - $bildNameStart;
-		$bildName = "var/".substr($bildA,$bildNameStart,$bildNameEnd);
-		file_put_contents($bildName, file_get_contents($bildUrl));
 		$templateData = $pdftemplate->getData();
-		$templateData['template_data'] = str_replace ("Placeholder_for_card_text" , $text , $templateData['template_data'] );
-		$templateData['template_data'] = str_replace ("Placeholder_for_card_background" , $bildName , $templateData['template_data'] );
-		$pdftemplate->setData($templateData);
 
+		$text = $this->extractKartentext($productOptions);
+		$templateData['template_data'] = str_replace ("Placeholder_for_card_text" , $text , $templateData['template_data'] );
+
+		$bildA = $this->extractBild($productOptions);
+		
+
+		if ($bildA != "") {
+			$bildUrlStart = strpos($bildA,'http');
+			$bildUrlEnd = strpos($bildA,"\"",$bildUrlStart) - $bildUrlStart;
+			$bildUrl = substr($bildA,$bildUrlStart,$bildUrlEnd);
+			$bildNameStart = strpos($bildA,'>') + 1;
+			$bildNameEnd = strpos($bildA,"<",$bildNameStart) - $bildNameStart;
+			$bildName = "var/".substr($bildA,$bildNameStart,$bildNameEnd);
+			file_put_contents($bildName, file_get_contents($bildUrl));
+		}
+		else {
+			$bildName = "";
+		}
+
+		$templateData['template_data'] = str_replace ("Placeholder_for_card_background" , $bildName , $templateData['template_data'] );
+		
+		$pdftemplate->setData($templateData);
 		return $pdftemplate;
 
 	}
@@ -218,7 +196,8 @@ class Printpdf extends Abstractpdf {
 			if ($option["label"] == "Kartentext") return true;
 			else return false;
 		});
-		return current($optionText)["value"];
+		if ( count($optionText) > 0) return current($optionText)["value"];
+		else return "";
 	}
 
 	private function extractBild($options) {
@@ -226,7 +205,8 @@ class Printpdf extends Abstractpdf {
 			if ($option["label"] == "Bild für die Grußkarte") return true;
 			else return false;
 		});
-		return current($optionText)["value"];
+		if ( count($optionText) > 0) return current($optionText)["value"];
+		else return "";
 	}
 
 }
