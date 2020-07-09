@@ -39,7 +39,7 @@ class PrintCardPlugin
 			$data = $item->getData();
 			$productOptions = $data["product_options"];
 
-			if (count($productOptions) > 0) {
+			if (count($productOptions) > 0 && isset($productOptions["options"])) {
 
 				$options = $productOptions["options"];
 
