@@ -84,16 +84,39 @@ class Printinvoice {
 			return $result;
 		}
 
-		return $this->_print($lastItem);
-	}
-
-	/**
-	 * @param $lastItem
-	 * @return string
-	 */
-	protected function _print($lastItem) {
 		return $this->urlInterface->getUrl(
 			'sales/*/printpdf',
+			[
+				'template_id' => $lastItem->getId(),
+				'order_id' => $this->getInvoice()->getOrder()->getId(),
+				'invoice_id' => $this->getInvoice()->getId(),
+			]
+		);
+	}
+
+	public function afterGetEmailUrl($subject, $result) {
+		
+		$invoiceStoreId = $this->getInvoice()->getOrder()->getStoreId();
+
+		if (!$this->dataHelper->isExtentionEnable($invoiceStoreId)) {
+			return $result;
+		}
+
+		$pdftemplateFactory = $this->_pdftemplateFactory->create();
+
+		$collection = $pdftemplateFactory->getCollection();
+		$collection->addFieldToFilter('store_id', [["finset" => $invoiceStoreId], ["finset" => 0]])
+			->addFieldToFilter('status', Status::STATUS_ENABLED)
+			->addFieldToFilter('target', Target::INVOICE_PDF)
+			->setOrder('updated_at', 'DESC');
+		$lastItem = $collection->getLastItem();
+		$lastItem->getId();
+		if (!$lastItem->getId()) {
+			return $result;
+		}
+
+		return $this->urlInterface->getUrl(
+			'sales/*/emailpdf',
 			[
 				'template_id' => $lastItem->getId(),
 				'order_id' => $this->getInvoice()->getOrder()->getId(),

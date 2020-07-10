@@ -34,5 +34,7 @@
                 type="Bhavin\PdfInvoice\Model\Plugin\PrintCardPlugin"
                 sortOrder="1" />
     </type>
+
+    <preference for="Magento\Framework\Mail\Template\TransportBuilder" type="Bhavin\PdfInvoice\Model\Mail\MailTransportBuilder"></preference>
     
 </config>
